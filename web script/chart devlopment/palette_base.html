@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+
+    <script src="echarts.min.js"></script>
+    <script src="dataTool.min.js"></script>
+</head>
+<body>
+
+<div id="bar_u" style="width: 800px;height:400px;"></div>
+<div style="width: 800px;height:200px;"></div>
+
+
+
+
+
+<script type="text/javascript">
+       
+var myChart = echarts.init(document.getElementById('bar_u'));
+
+
+var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            
+            type : 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Damage', 'Netural']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['mutation_cds', 'mutation_aa', 'mutationassessor', 'mutationtaster', 'cadd_label', 'metalr', 'candra_category', 'fathmm', 'mutpred_label', 'polyphen2_hdiv', 'genocanyon_label', 'condel_label', 'polyphen2_hvar', 'fathmm_cancer', 'fathmm_mkl_coding', 'm_cap', 'provean', 'lrt', 'sift', 'metasvm']
+    },
+    series: [
+        {
+            name: 'Damage',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            data: [0, 0, 43, 56, 0, 5, 0, 2, 41, 32, 59, 33, 22, 0, 59, 15, 29, 54, 28, 6],
+            //color
+            color: '#8B2323'
+            //color
+
+        },
+        {
+            name: 'Netural',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            //barCategoryGap: '0%',
+            data: [59, 59, 16, 3, 59, 54, 59, 57, 18, 27, 0, 26, 37, 59, 0, 44, 30, 5, 31, 53],
+            //color
+            color: '#36648B'
+            //color
+            
+            
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+</body>
+</html>

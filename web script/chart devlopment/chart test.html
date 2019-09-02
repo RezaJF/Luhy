@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+</head>
+<body>
+    
+    <div id="bar_u" style="width: 800px;height:400px;"></div>
+
+<script type="text/javascript">
+var damageData_u = [0, 0, 43, 56, 0, 5, 0, 2, 41, 32, 59, 33, 22, 0, 59, 15, 29, 54, 28, 6]
+var neturalData_u = [59, 59, 16, 3, 59, 54, 59, 57, 18, 27, 0, 26, 37, 59, 0, 44, 30, 5, 31, 53]
+var precolumns_u = ['mutation_cds', 'mutation_aa', 'mutationassessor', 'mutationtaster', 'cadd_label', 'metalr', 'candra_category', 'fathmm', 'mutpred_label', 'polyphen2_hdiv', 'genocanyon_label', 'condel_label', 'polyphen2_hvar', 'fathmm_cancer', 'fathmm_mkl_coding', 'm_cap', 'provean', 'lrt', 'sift', 'metasvm']
+
+    
+var myChart = echarts.init(document.getElementById(bar_u));
+
+var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            
+            type : 'shadow'        
+        }
+    },
+    legend: {
+        data: ['Damage', 'Netural']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'value'
+    },
+    yAxis: {
+        type: 'category',
+        data: ['mutation_cds', 'mutation_aa', 'mutationassessor', 'mutationtaster', 'cadd_label', 'metalr', 'candra_category', 'fathmm', 'mutpred_label', 'polyphen2_hdiv', 'genocanyon_label', 'condel_label', 'polyphen2_hvar', 'fathmm_cancer', 'fathmm_mkl_coding', 'm_cap', 'provean', 'lrt', 'sift', 'metasvm']
+    },
+    series: [
+        {
+            name: 'Damage',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            data: [0, 0, 43, 56, 0, 5, 0, 2, 41, 32, 59, 33, 22, 0, 59, 15, 29, 54, 28, 6],
+            color: 'tomato'
+
+        },
+        {
+            name: 'Netural',
+            type: 'bar',
+            stack: 'total',
+            label: {
+                normal: {
+                    show: false,
+                    position: 'insideRight'
+                }
+            },
+            //barCategoryGap: '0%',
+            data: [59, 59, 16, 3, 59, 54, 59, 57, 18, 27, 0, 26, 37, 59, 0, 44, 30, 5, 31, 53],
+            color: 'red'
+            
+            
+        }
+    ]
+};
+myChart.setOption(option);
+   
+
+ 
+
+</script>
+
+
+
+</body>
+</html>
