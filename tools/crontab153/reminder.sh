@@ -1,0 +1,1 @@
+python /data/webservice/reminder/email_to_alarm.py
