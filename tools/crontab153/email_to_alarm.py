@@ -1,6 +1,7 @@
 import smtplib
 import email
 import time
+import alarm_setting
 
 
 class sent_work:
@@ -24,25 +25,16 @@ class sent_work:
             msg["from"] = sender
             msg["to"] = user
             server = smtplib.SMTP('smtp.suda.edu.cn')
-            server.login(sender,'Lilab2017')
+            server.login(sender,alarm_setting.email_server_pwd)
             server.sendmail(sender, user, msg.as_string())
             server.quit()
 
 def send_email(reminder_type):
-    user_list = ['185180124@qq.com','minghui.li.2016@outlook.com','20184221042@stu.suda.edu.cn']
-    if reminder_type == 'https':
-        title = '[Warning!] We need to reapply for a new HTTPS Certificate!'
-        message_content = 'We need to reapply for a new HTTPS Certificate of https://lilab.jysw.suda.edu.cn/ \n This website can help us to get a free Certificate: \n https://certbot.eff.org/lets-encrypt/centosrhel7-nginx'
+    user_list = alarm_setting.admin_list
+    alarm_type_list = alarm_setting.alarm_type_list
+    if reminder_type in alarm_type_list:
+        title,message_content = alarm_setting.get_email_content(reminder_type)
         sent_work(user_list,title,message_content)
-    elif reminder_type == 'foldx':
-        title = '[Warning!] We need a new license for Foldx!'
-        message_content = 'We need a new license for Foldx! \n This website can help us: \n http://foldxsuite.crg.eu/'
-        sent_work(user_list,title,message_content)
-    elif reminder_type == 'test':
-        title = '[Warning!] test warning!'
-        message_content = 'This is a test mail, send by our group reminder process!'
-        sent_work(user_list,title,message_content)
-
 
 
 
@@ -84,6 +76,7 @@ def test_time():
     for text in new_text:
     	ff.write(text)
     ff.close()
+    
 
 
 def main():
